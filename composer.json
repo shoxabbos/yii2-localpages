@@ -12,7 +12,7 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "zxbodya/yii2-tinymce": "*@dev"
+        "zxbodya/yii2-tinymce": "dev-master"
     },
     "autoload": {
         "psr-4": {
