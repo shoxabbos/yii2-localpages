@@ -56,3 +56,18 @@ public function actions()
     ];
 }
 ```
+
+__For add news__: http://localhost:8080/pages/page/create
+
+__For see created your post__: http://localhost:8080/site/page?slug=test
+
+__If you want a nice url you can set up the URL manager__: 
+```php
+'page/<slug:\w+>' => 'site/page'
+```
+
+__After that, you can open the pages as__:
+
+Before: ~~http://localhost:8080/site/page?slug=test~~
+
+After: http://localhost:8080/page/test
