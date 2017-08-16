@@ -1,6 +1,6 @@
-Create local pages
+Create static pages
 ==================
-Create local pages
+Create static pages
 
 Installation
 ------------
