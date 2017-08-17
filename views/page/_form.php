@@ -6,9 +6,13 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model shoxabbos\localpages\models\Page */
 /* @var $form yii\widgets\ActiveForm */
+\shoxabbos\localpages\PageAsset::register($this);
+
+$this->registerJs("tinymce.init({ selector:'textarea' });")
 ?>
 
 <div class="page-form">
+
 
     <?php $form = ActiveForm::begin(); ?>
 
