@@ -1,6 +1,6 @@
-Create static pages
+Create multi language static pages
 ==================
-Create static pages
+Create multi language static pages
 
 Installation
 ------------
@@ -38,8 +38,16 @@ Add module to web/config
 'modules' => [
     'pages' => [
         'class' => '\shoxabbos\localpages\Module',
-        'layoutPath' => '@app/path/to/your/layouts',
-        'layout' => 'admin'
+        'langs' => [
+            'ru' => 'Russian',
+            'en' => 'English',
+        ],
+        'defaultRoute' => 'page',
+        'defaultLang' => 'ru',
+        'layoutPath' => '@app/path/to/layouts',
+        'layout' => 'admin',
+        'pagesTableName' => 'pages',
+        'pagesContentTableName' => 'page_contents',
     ],
 ]
 ```

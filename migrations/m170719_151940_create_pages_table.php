@@ -1,6 +1,6 @@
 <?php
 
-use shoxabbos\localpages\Module;
+use \shoxabbos\localpages\Module;
 use yii\db\Migration;
 
 /**
@@ -13,7 +13,7 @@ class m170719_151940_create_pages_table extends Migration
      */
     public function up()
     {
-        $this->createTable(Module::$pagesTableName, [
+        $this->createTable(Module::getInstance()->pagesTableName, [
             'id' => $this->primaryKey(),
             'slug' => $this->string(255)->notNull(),
             'title' => $this->string(255)->notNull(),
@@ -26,6 +26,6 @@ class m170719_151940_create_pages_table extends Migration
      */
     public function down()
     {
-        $this->dropTable(Module::$pagesTableName);
+        $this->dropTable(Module::getInstance()->pagesTableName);
     }
 }

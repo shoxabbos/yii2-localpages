@@ -7,14 +7,14 @@ namespace shoxabbos\localpages;
  */
 class Module extends \yii\base\Module
 {
-
-    public $defaultRoute = "page";
-
-    /*
-     * Pagelar tablitsasi nomi
+    /**
+     * @var $langs array
      */
-    public static $pagesTableName = "pages";
-
+    public $langs;
+    public $defaultLang;
+    public $defaultRoute;
+    public $pagesTableName;
+    public $pagesContentTableName;
 
     /**
      * @inheritdoc
@@ -23,6 +23,11 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        \Yii::configure($this, require __DIR__ . '/config.php');
     }
+    
+    public static function config() {
+        return require __DIR__ . '/config.php';
+    }
+    
 }

@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use shoxabbos\localpages\models\Page;
 
 /**
- * PageSearch represents the model behind the search form about `\shoxabbos\localpages\models\Page`.
+ * PageSearch represents the model behind the search form about `shoxabbos\localpages\models\Page`.
  */
 class PageSearch extends Page
 {
@@ -19,7 +19,7 @@ class PageSearch extends Page
     {
         return [
             [['id'], 'integer'],
-            [['slug', 'title', 'content'], 'safe'],
+            [['slug'], 'safe'],
         ];
     }
 
@@ -62,9 +62,7 @@ class PageSearch extends Page
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;
     }

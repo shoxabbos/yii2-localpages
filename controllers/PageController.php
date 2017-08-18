@@ -64,7 +64,7 @@ class PageController extends Controller
     public function actionCreate()
     {
         $model = new Page();
-
+        $model->load(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -82,7 +82,7 @@ class PageController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id, true);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -113,9 +113,13 @@ class PageController extends Controller
      * @return Page the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $multilang = false)
     {
-        if (($model = Page::findOne($id)) !== null) {
+        $model = $multilang ? Page::find()
+            ->where(['id' => $id])
+            ->multilingual()->one() : Page::findOne($id);
+
+        if ($model !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
