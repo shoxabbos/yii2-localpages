@@ -61,7 +61,7 @@ $module = Module::getInstance();
                 <div style="padding: 10px" role="tabpanel" class="tab-pane <?=$module->defaultLang == $key ? "active" : ""?>" id="lang_<?=$key?>">
                     <?php if ($module->defaultLang == $key) {
                         echo $form->field($model, 'title')->textInput();
-                        echo $form->field($model, 'content_'.$key)->textarea();
+                        echo $form->field($model, 'content')->textarea();
                     } else {
                         echo $form->field($model, 'title_'.$key)->textInput();
                         echo $form->field($model, 'content_'.$key)->textarea();
