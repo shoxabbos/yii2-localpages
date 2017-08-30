@@ -3,40 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use shoxabbos\localpages\Module;
+use zxbodya\yii2\tinymce\TinyMce;
+use zxbodya\yii2\elfinder\TinyMceElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model shoxabbos\localpages\models\Page */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $module Module */
-
-\shoxabbos\news\NewsAsset::register($this);
-
-$script = <<<JS
-tinymce.init({
-  selector: 'textarea',
-  height: 500,
-  theme: 'modern',
-  plugins: [
-    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    'searchreplace wordcount visualblocks visualchars code fullscreen',
-    'insertdatetime media nonbreaking save table contextmenu directionality',
-    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
-  ],
-  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
-  image_advtab: true,
-  templates: [
-    { title: 'Test template 1', content: 'Test 1' },
-    { title: 'Test template 2', content: 'Test 2' }
-  ],
-  content_css: [
-    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-    '//www.tinymce.com/css/codepen.min.css'
-  ]
- });
-JS;
-
-$this->registerJs($script);
 
 $module = Module::getInstance();
 ?>
@@ -61,10 +34,26 @@ $module = Module::getInstance();
                 <div style="padding: 10px" role="tabpanel" class="tab-pane <?=$module->defaultLang == $key ? "active" : ""?>" id="lang_<?=$key?>">
                     <?php if ($module->defaultLang == $key) {
                         echo $form->field($model, 'title')->textInput();
-                        echo $form->field($model, 'content')->textarea();
+                        echo $form->field($model, 'content')->widget(TinyMce::className(), [
+                            'fileManager' => [
+                                'class' => TinyMceElFinder::className(),
+                                'connectorRoute' => \yii\helpers\Url::to('connector'),
+                            ],
+                            'settings' => [
+                                'height' => 500
+                            ]
+                        ]);
                     } else {
                         echo $form->field($model, 'title_'.$key)->textInput();
-                        echo $form->field($model, 'content_'.$key)->textarea();
+                        echo $form->field($model, 'content_'.$key)->widget(TinyMce::className(), [
+                            'fileManager' => [
+                                'class' => TinyMceElFinder::className(),
+                                'connectorRoute' => \yii\helpers\Url::to('connector'),
+                            ],
+                            'settings' => [
+                                'height' => 500
+                            ]
+                        ]);
                     } ?>
                 </div>
             <?php } ?>

@@ -12,7 +12,9 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "omgdef/yii2-multilingual-behavior": "~2.0"
+        "omgdef/yii2-multilingual-behavior": "~2.0",
+        "zxbodya/yii2-tinymce": "*@dev",
+        "zxbodya/yii2-elfinder": "*@dev"
     },
     "autoload": {
         "psr-4": {

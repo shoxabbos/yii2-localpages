@@ -8,6 +8,7 @@ use shoxabbos\localpages\models\PageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use zxbodya\yii2\elfinder\ConnectorAction;
 
 /**
  * PageController implements the CRUD actions for Page model.
@@ -26,6 +27,25 @@ class PageController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+        ];
+    }
+
+    public function actions()
+    {
+        if (!file_exists(\Yii::getAlias('@webroot') . '/uploads/')) {
+            mkdir(\Yii::getAlias('@webroot') . '/uploads/', 0777);
+        }
+
+        return [
+            'connector' => array(
+                'class' => ConnectorAction::className(),
+                'settings' => array(
+                    'root' => \Yii::getAlias('@webroot') . '/uploads/',
+                    'URL' => \Yii::getAlias('@web') . '/uploads/',
+                    'rootAlias' => 'Home',
+                    'mimeDetect' => 'none'
+                )
+            ),
         ];
     }
 
